@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Schedule</title>
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+body {
+    /*  background-color: #FFFAF0; */
+    background-color: #ffffff;
+}
+
+.container {
+    margin: 10px auto;
+}
+
+.light {
+    background-color: rgba(238, 229, 229, 0.966);
+    color: #5a5052;
+}
+
+.dark {
+    margin-left: 15px;
+}
+
+.calendar {
+    width: 270px;
+    box-shadow: 0px 0px 35px -16px rgba(0, 0, 0, 0.75);
+    font-family: 'Roboto', sans-serif;
+    padding: 20px 30px;
+    color: #363b41;
+    margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+    .calendar {
+        width: 600px;
+    }
+}
+
+@media (min-width: 800px) {
+    .calendar {
+        width: 800px;
+    }
+}
+
+.calendar_header {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.header_copy {
+    color: #A39D9E;
+    font-size: 20px;
+}
+
+.calendar_plan {
+    margin: 20px 0 40px;
+}
+
+.cl_plan {
+    width: 100%;
+    /* background-image: linear-gradient(-222deg, #cd5c5c, #778899); */
+    background-image: linear-gradient(-222deg, darkblue, #1b334b);
+    box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+    padding: 30px;
+    color: #fff;
+}
+
+.cl_title {}
+
+.cl_summary {
+    font-size: 20px;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.topic_table {
+    color: #A39D9E;
+}
+
+.topic_table td {
+    padding: 10px;
+}
+
+.calendar_events {
+    color: #A39D9E;
+}
+
+.ce_title {
+    font-size: 14px;
+}
+
+.event_item {
+    margin: 18px 0;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.event_item:hover {
+    /* background-image: linear-gradient(-222deg, #000, #3d4853, darkblue); */
+    /* background-image: linear-gradient(-222deg, #000, #ff0000, #cd5c5c); */
+    box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+    background-color: rgb(23, 13, 36);
+    color: #fff;
+}
+
+.ei_Dot,
+.ei_Title {
+    display: inline-block;
+}
+
+.ei_Dot {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #A39D9E;
+    box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+}
+
+.dot_mid1 {
+    background-color: #FF8494;
+}
+
+.dot_mid2 {
+    background-color: #8454DE;
+}
+
+.dot_mid3 {
+    background-color: #23B75B;
+}
+
+.dot_mid4 {
+    background-color: #868686;
+}
+
+.ei_Title {
+    margin-left: 10px;
+    /*color:#A39D9E;*/
+}
+
+.ei_Chapter {
+    font-size: 14px;
+    margin-left: 27px;
+    font-weight: bolder;
+    /*color:#A39D9E;*/
+}
+
+.ei_Topic {
+    font-size: 12px;
+    margin-left: 30px;
+    font-weight: lighter;
+    /*color:#A39D9E;*/
+}
+
+.ei_Data {
+    visibility: hidden;
+}
+
+.ei_Project {
+    font-size: 12px;
+    margin-left: 27px;
+    font-weight: bolder;
+    /*color:#A39D9E;*/
+}
+
+.ei_Comment {
+    font-size: 10px;
+    margin-left: 27px;
+    font-style: italic;
+    /*color:#A39D9E;*/
+}
+
+.cl_Data {
+    font-family: Benton Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dark {
+    background-image: linear-gradient(-222deg, #646464, #454545);
+    color: #fff;
+    .header_title,
+    .ei_Title,
+    .ce_title {
+        color: #fff;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calendar light">
+            <div class="calendar_header">
+                <h1 class="header_title">Web Application Development</h1>
+                <p class="header_copy">Calendar Plan</p>
+            </div>
+            <div class="calendar_plan">
+                <div class="cl_plan" id="next">
+                    <div class="cl_date">
+                        <span id="day"></span> <span id="month"></span>
+                        <span id="year"></span>
+                    </div>
+                    <div class="cl_title">Next Topics</div>
+                    <div class="cl_summary"></div>
+                </div>
+            </div>
+            <div class="calendar_events">
+                <table class="topic_table">
+                    <tr>
+                        
+                    </tr>
+                </table>
+            </div>
+            <div class="calendar_events">
+                <p class="ce_title">Full Schedule</p>
+                <div class="event_item" id="1">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 8 -
+                        <b>Planned Absence</b> 
+                    </div>
+                    
+                    <div class="ei_Topic">Planned Absence</div>
+                    
+                    <div class="ei_Data"></div>
+                      
+                </div>
+                <div class="event_item" id="1a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 10 
+                    </div>
+                    
+                    <div class="ei_Chapter">Introduction</div>
+                    
+                    <div class="ei_Topic">Introduction</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="2">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 15 
+                    </div>
+                    
+                    <div class="ei_Chapter">Hyper Text Markup Language (HTML)</div>
+                    
+                    <div class="ei_Topic">HTML Concepts. Lists. Images</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="2a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 17 
+                    </div>
+                    
+                    <div class="ei_Chapter">HTML</div>
+                    
+                    <div class="ei_Topic">Links & Anchors. </div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="3">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 22 
+                    </div>
+                    
+                    <div class="ei_Chapter">HTML</div>
+                    
+                    <div class="ei_Topic">Tables. Layouts</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Github Due</div>
+                    
+                </div>
+                <div class="event_item" id="3a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 24 
+                    </div>
+                    
+                    <div class="ei_Chapter">HTML</div>
+                    
+                    <div class="ei_Topic">Forms</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="4">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 29 
+                    </div>
+                    
+                    <div class="ei_Chapter">Cascading Stylesheets (CSS)</div>
+                    
+                    <div class="ei_Topic">Styling Standards</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Github page host Due</div>
+                    
+                </div>
+                <div class="event_item" id="4a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        August 31 
+                    </div>
+                    
+                    <div class="ei_Chapter">CSS</div>
+                    
+                    <div class="ei_Topic">Selectors, Classes & Ids</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="5">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 5 
+                    </div>
+                    
+                    <div class="ei_Chapter">Web design</div>
+                    
+                    <div class="ei_Topic">div, box & positioning</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="5a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 7 
+                    </div>
+                    
+                    <div class="ei_Chapter">Web design theory</div>
+                    
+                    <div class="ei_Topic">Color & User Experience</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="6">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 12 
+                    </div>
+                    
+                    <div class="ei_Chapter">Web design standards</div>
+                    
+                    <div class="ei_Topic">Bootstrap</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Command Line Due</div>
+                    
+                </div>
+                <div class="event_item" id="6a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 14 
+                    </div>
+                    
+                    <div class="ei_Chapter">Web design standards</div>
+                    
+                    <div class="ei_Topic">Bootstrap</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="7">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 19 
+                    </div>
+                    
+                    <div class="ei_Chapter">Javascript (JS)</div>
+                    
+                    <div class="ei_Topic">Fundamentals</div>
+                    
+                    <div class="ei_Data">_</div>
+                     
+                    <div class="ei_Project">Project 1: Art auction</div>
+                     
+                </div>
+                <div class="event_item" id="7a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 21 
+                    </div>
+                    
+                    <div class="ei_Chapter">JS</div>
+                    
+                    <div class="ei_Topic">Fundamentals</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="8">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 26 
+                    </div>
+                    
+                    <div class="ei_Chapter">JS</div>
+                    
+                    <div class="ei_Topic">Advanced programming</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="8a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        September 28 
+                    </div>
+                    
+                    <div class="ei_Chapter">JS</div>
+                    
+                    <div class="ei_Topic">Advanced programming</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="9">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 3 
+                    </div>
+                    
+                    <div class="ei_Chapter">Website Architecture</div>
+                    
+                    <div class="ei_Topic">DOM Model</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="9a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 5 
+                    </div>
+                    
+                    <div class="ei_Chapter">Interactive Websites</div>
+                    
+                    <div class="ei_Topic">JQuery</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="10">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 10 
+                    </div>
+                    
+                    <div class="ei_Chapter">Interactive Websites</div>
+                    
+                    <div class="ei_Topic">JQuery</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="10a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 12 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">Intoduction to Node.js</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="11">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 17 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">ExpressJS: GET, POST, Routes, Requests, Response</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="11a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 19 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">ExpressJS: Endpoints, Paths, Params. JSON</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Heroku deployment Due</div>
+                    
+                </div>
+                <div class="event_item" id="12">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 24 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">Third-party APIs</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Postman Due</div>
+                    
+                </div>
+                <div class="event_item" id="12a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 26 
+                    </div>
+                    
+                    <div class="ei_Chapter">Database</div>
+                    
+                    <div class="ei_Topic">SQL, MongoDB + Mongoose</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: MogoDB Atlas Due</div>
+                    
+                </div>
+                <div class="event_item" id="13">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        October 31 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">Building a RESTful API</div>
+                    
+                    <div class="ei_Data">_</div>
+                     
+                    <div class="ei_Project">Project 2: Blog</div>
+                     
+                </div>
+                <div class="event_item" id="13a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 2 -
+                        <b>Holiday</b> 
+                    </div>
+                    
+                    <div class="ei_Topic">Holiday</div>
+                    
+                    <div class="ei_Data"></div>
+                      
+                </div>
+                <div class="event_item" id="14">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 7 
+                    </div>
+                    
+                    <div class="ei_Chapter">Back-end Development</div>
+                    
+                    <div class="ei_Topic">Authentication & Security</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                    <div class="ei_Comment">Lab: Heroku deployment w/MongoDB Due</div>
+                    
+                </div>
+                <div class="event_item" id="14a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 9 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">Introduction to React</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="15">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 14 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">Introduction to React</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="15a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 16 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">JSX, Babel, Component & Props</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="16">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 21 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">Mapping, Filter & Reduce</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="16a">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 23 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">States & Event Handling. React Forms</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                <div class="event_item" id="17">
+                    <div class="ei_Dot dot_mid1"></div>
+                    <div class="ei_Title">
+                        November 28 
+                    </div>
+                    
+                    <div class="ei_Chapter">React</div>
+                    
+                    <div class="ei_Topic">States & Event Handling. React Forms</div>
+                    
+                    <div class="ei_Data">_</div>
+                      
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        Date.prototype.getWeek = function () {
+    var onejan = new Date(this.getFullYear(), 0, 1);
+    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+}
+
+// week 32 is the start
+var first_wk = 32;
+var wrk_wks = 19;
+var d = new Date();
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+document.getElementById("month").innerHTML = months[d.getMonth()];
+document.getElementById("day").innerHTML = d.getDate();
+document.getElementById("year").innerHTML = d.getFullYear();
+var weekNumber = d.getWeek() - first_wk + 1;
+//console.log(weekNumber);
+if (weekNumber < 1)
+    weekNumber = 1;
+else if (weekNumber > wrk_wks)
+    weekNumber = wrk_wks;
+//console.log(weekNumber);
+content = document.getElementById(weekNumber);
+contenta = document.getElementById(weekNumber + "a");
+header = document.getElementById("next");
+lbl = "";
+lbl1 = "";
+lbl2 = "";
+extra = "";
+extra2 = "";
+proj = "";
+proja = "";
+comm = "";
+comma = "";
+if (content) {
+    if (content.getElementsByClassName("ei_Topic").length > 1) {
+        x = content.getElementsByClassName("ei_Topic");
+        for (i = 0; i < x.length; i++) {
+            lbl1 += x[i].innerHTML + "<br>";
+        }
+    } else {
+        lbl1 = content.getElementsByClassName("ei_Topic")[0].innerHTML;
+    }
+    extra = content.getElementsByClassName("ei_Data")[0].innerHTML;
+    if (content.getElementsByClassName("ei_Project").length > 0) {
+        proj = content.getElementsByClassName("ei_Project")[0].innerHTML;
+    }
+    if (content.getElementsByClassName("ei_Comment").length > 0) {
+        comm = content.getElementsByClassName("ei_Comment")[0].innerHTML;
+    }
+}
+if (contenta) {
+    if (contenta.getElementsByClassName("ei_Topic").length > 1) {
+        x = contenta.getElementsByClassName("ei_Topic");
+        for (i = 0; i < x.length; i++) {
+            lbl2 += x[i].innerHTML + "<br>";
+        }
+    } else {
+        lbl2 = contenta.getElementsByClassName("ei_Topic")[0].innerHTML;
+    }
+    extra2 = contenta.getElementsByClassName("ei_Data")[0].innerHTML;
+    if (contenta.getElementsByClassName("ei_Project").length > 0) {
+        proja = contenta.getElementsByClassName("ei_Project")[0].innerHTML;
+    }
+    if (contenta.getElementsByClassName("ei_Comment").length > 0) {
+        comma = contenta.getElementsByClassName("ei_Comment")[0].innerHTML;
+    }
+}
+if (lbl1 == lbl2) {
+    lbl = lbl1;
+} else {
+    if (lbl1 != "") {
+        lbl = lbl1;
+        if (lbl2 != "")
+            lbl += "<br>";
+    }
+    if (lbl2 != "")
+        lbl += lbl2;
+}
+lbl += "<span class=\"cl_Data\"><br/>";
+if (extra != "_") {
+    lbl += "<br/><b><i>" + extra + "</i></b>";
+}
+if (extra2 != "_") {
+    lbl += "<br/><b><i>" + extra2 + "</i></b>";
+}
+if (proj != "") {
+    lbl += "<br/><b>" + proj + "</b>";
+}
+if (proja != "") {
+    lbl += "<br/><b>" + proja + "</b>";
+}
+if (comm != "") {
+    lbl += "<br/><i>" + comm + "</i>";
+}
+if (comma != "") {
+    lbl += "<br/><i>" + comma + "</i>";
+}
+lbl += "</span>"
+header.getElementsByClassName("cl_summary")[0].innerHTML = lbl;
+    </script>
+</body>
+
+</html>
